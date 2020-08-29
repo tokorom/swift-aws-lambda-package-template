@@ -1,3 +1,1 @@
-# Lambda
-
-A description of this package.
+# swift-aws-lambda-package-template
