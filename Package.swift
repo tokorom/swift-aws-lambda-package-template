@@ -14,11 +14,16 @@ let package = Package(
   dependencies: [
     .package(
       url: "https://github.com/swift-server/swift-aws-lambda-runtime.git",
-      .upToNextMajor(from: "1.0.0")
+      .upToNextMajor(from: "0.2.0")
     )
   ],
   targets: [
-    .target(name: "Lambda", dependencies: []),
+    .target(
+      name: "Lambda",
+      dependencies: [
+        .product(name: "AWSLambdaRuntime", package: "swift-aws-lambda-runtime")
+      ]
+    ),
     .testTarget(name: "LambdaTests", dependencies: ["Lambda"]),
   ]
 )
