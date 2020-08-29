@@ -4,19 +4,21 @@
 import PackageDescription
 
 let package = Package(
-    name: "Lambda",
-    dependencies: [
-        // Dependencies declare other packages that this package depends on.
-        // .package(url: /* package url */, from: "1.0.0"),
-    ],
-    targets: [
-        // Targets are the basic building blocks of a package. A target can define a module or a test suite.
-        // Targets can depend on other targets in this package, and on products in packages which this package depends on.
-        .target(
-            name: "Lambda",
-            dependencies: []),
-        .testTarget(
-            name: "LambdaTests",
-            dependencies: ["Lambda"]),
-    ]
+  name: "Lambda",
+  platforms: [
+    .macOS(.v10_13)
+  ],
+  products: [
+    .executable(name: "Lambda", targets: ["Lambda"])
+  ],
+  dependencies: [
+    .package(
+      url: "https://github.com/swift-server/swift-aws-lambda-runtime.git",
+      .upToNextMajor(from: "1.0.0")
+    )
+  ],
+  targets: [
+    .target(name: "Lambda", dependencies: []),
+    .testTarget(name: "LambdaTests", dependencies: ["Lambda"]),
+  ]
 )
